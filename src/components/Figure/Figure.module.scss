@@ -1,0 +1,25 @@
+.figure {
+    @keyframes appear {
+        0% {
+            scale: 1.4;
+            opacity: 0.5;
+        }
+
+        100% {
+            scale: 1;
+            opacity: 1;
+        }
+    }
+
+    overflow:hidden;
+    width:100%;
+    aspect-ratio: 1 / 1;
+
+    &__animation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        animation: appear 0.2s ease-out forwards;
+    }
+}
