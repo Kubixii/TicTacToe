@@ -1,15 +1,88 @@
 {
     "states": [
-        [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ]
+        {
+            "board": [
+                [
+                    "P",
+                    "P",
+                    "P"
+                ]
+            ],
+            "line": {
+                "hasWon": true,
+                "hasDraw": false,
+                "linePosition": 0,
+                "lineAngle": null
+            }
+        },
+        {
+            "board": [
+                [
+                    "P"
+                ],
+                [
+                    "P"
+                ],
+                [
+                    "P"
+                ]
+            ],
+            "line": {
+                "hasWon": true,
+                "hasDraw": false,
+                "linePosition": 0,
+                "lineAngle": null
+            }
+        },
+        {
+            "board": [
+                [
+                    "P",
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    "P",
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    "P"
+                ]
+            ],
+            "line": {
+                "hasWon": true,
+                "hasDraw": false,
+                "linePosition": 2,
+                "lineAngle": 45
+            }
+        },
+        {
+            "board": [
+                [
+                    0,
+                    0,
+                    "P"
+                ],
+                [
+                    0,
+                    "P",
+                    0
+                ],
+                [
+                    "P",
+                    0,
+                    0
+                ]
+            ],
+            "line": {
+                "hasWon": true,
+                "hasDraw": false,
+                "linePosition": 2,
+                "lineAngle": 45
+            }
+        }
     ]
 }

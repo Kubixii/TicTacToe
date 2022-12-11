@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 const style = bemCssModules(fieldStyles)
 
-const Field = ({ id }) => {
+const Field = ({ row, col }) => {
 
     const { updatePlayingField, isFigureCross, winState: { hasWon } } = useContext(StoreContext)
     const [show, setShow] = useState(false)
@@ -16,7 +16,7 @@ const Field = ({ id }) => {
 
     const fillField = () => {
         setShow(true)
-        updatePlayingField(id)
+        updatePlayingField(row, col)
     }
 
     useEffect(() => {

@@ -8,12 +8,12 @@ export const StoreContext = createContext(null)
 const { states } = data
 
 const initialFieldState = [
-    0, 0, 0,
-    0, 0, 0,
-    0, 0, 0
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
 ]
 
-const initalWinState = { "hasWon": false, "linePosition": 0, "lineAngle": null }
+const initalWinState = { "hasWon": false, "hasDraw": false, "linePosition": 0, "lineAngle": null }
 
 const StoreProvider = ({ children }) => {
 
@@ -22,6 +22,25 @@ const StoreProvider = ({ children }) => {
     const [winState, setWinState] = useState(initalWinState)
 
     const checkWinState = () => {
+        // const isDraw = playingField.join().indexOf(0)
+        // console.log(isDraw);
+
+        console.log(checkWinForX())
+        checkWinForO()
+    }
+
+    const checkWinForX = () => {
+        const test = [0, 4, 8]
+        const moves = [0, 4, 5, 2, 1]
+        const reduced = moves.filter(item => {
+            return test.indexOf(item) === -1 ? item : null;
+        })
+        return moves.length - 3 === reduced.length
+    }
+
+    const checkWinForO = () => {
+        const board = playingField.map(row => row.map(col => col == "O" ? "P" : col == "X" ? 0 : col))
+
     }
 
     // const drawLine = (pos, deg = 0) => {
@@ -32,11 +51,11 @@ const StoreProvider = ({ children }) => {
     //     setWinState(currentWinState)
     // }
 
-    const updatePlayingField = (id) => {
+    const updatePlayingField = (row, col) => {
         const arrayChar = isFigureCross ? 'X' : 'O';
         setIsFigureCross(!isFigureCross)
         let stateCopy = [...playingField]
-        stateCopy[id] = arrayChar
+        stateCopy[row][col] = arrayChar
         setPlayingField(stateCopy)
         checkWinState()
     }

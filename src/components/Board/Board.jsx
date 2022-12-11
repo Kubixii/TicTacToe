@@ -12,8 +12,10 @@ const Board = () => {
 
     const { winState: { hasWon, linePosition, lineAngle } } = useContext(StoreContext)
 
-    const fields = Array.from({ length: 9 }, (_, index) => {
-        return <Field id={index} key={index} />
+    const fields = Array.from({ length: 3 }, (_, indexRow) => {
+        return Array.from({ length: 3 }, (_, indexCol) => {
+            return <Field row={indexRow} col={indexCol} key={indexCol} />
+        })
     })
 
     return (
