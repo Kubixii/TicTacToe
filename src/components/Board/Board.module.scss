@@ -1,0 +1,9 @@
+.board {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 30vw;
+    aspect-ratio: 1/ 1;
+    overflow: hidden;
+    position: relative
+}

@@ -1,0 +1,51 @@
+@keyframes cross {
+    0% {
+        top: 5%;
+        bottom: 95%;
+    }
+
+    100% {
+        top: 5%;
+        bottom: 5%;
+    }
+}
+
+
+.line {
+    background-color: gray;
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    width: 5%;
+    animation: cross 0.5s linear forwards;
+
+    &__lineWrapper {
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    &>div {
+        position: relative;
+        height: 100%;
+
+        &>div {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: gray;
+            position: absolute;
+        }
+    }
+
+    &__circleTop {
+        transform: translateY(-50%);
+    }
+
+    &__circleBottom {
+        bottom: 0;
+        transform: translateY(50%);
+    }
+
+}
