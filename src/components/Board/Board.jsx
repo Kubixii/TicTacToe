@@ -10,18 +10,19 @@ const style = bemCssModules(boardStyles)
 
 const Board = () => {
 
-    const { winState: { hasWon, linePosition, lineAngle } } = useContext(StoreContext)
+    const { endgameMessage, winState: { hasWon, linePosition, lineAngle } } = useContext(StoreContext)
 
-    const fields = Array.from({ length: 3 }, (_, indexRow) => {
-        return Array.from({ length: 3 }, (_, indexCol) => {
-            return <Field row={indexRow} col={indexCol} key={indexCol} />
-        })
+    const fields = Array.from({ length: 9 }, (_, index) => {
+        return <Field id={index + 1} key={index} />
     })
 
     return (
         <div className={style()}>
             {hasWon && <WinLine position={linePosition} angle={lineAngle} />}
             {fields}
+            <div>
+                <p>{endgameMessage}</p>
+            </div>
         </div>
     );
 }

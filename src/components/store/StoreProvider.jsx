@@ -7,65 +7,65 @@ import { useState } from 'react';
 export const StoreContext = createContext(null)
 const { states } = data
 
-const initialFieldState = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
-]
+const initialPlayerMoves = {
+    "X": [],
+    "O": []
+}
 
 const initalWinState = { "hasWon": false, "hasDraw": false, "linePosition": 0, "lineAngle": null }
 
 const StoreProvider = ({ children }) => {
 
-    const [playingField, setPlayingField] = useState(initialFieldState)
+    const [playerMoves, setPlayerMoves] = useState(initialPlayerMoves)
     const [isFigureCross, setIsFigureCross] = useState(true)
     const [winState, setWinState] = useState(initalWinState)
+    const [endgameMessage, setEndgameMessage] = useState(null)
 
     const checkWinState = () => {
-        // const isDraw = playingField.join().indexOf(0)
-        // console.log(isDraw);
+        // finish this logic
+        checkWin(playerMoves.X);
+        checkWin(playerMoves.O);
 
-        console.log(checkWinForX())
-        checkWinForO()
+        const isDraw = parseInt(playerMoves.X.length) + parseInt(playerMoves.O.length)
+        if (isDraw === 9) {
+            setEndgameMessage('remis')
+            return
+        }
     }
 
-    const checkWinForX = () => {
-        const test = [0, 4, 8]
-        const moves = [0, 4, 5, 2, 1]
-        const reduced = moves.filter(item => {
-            return test.indexOf(item) === -1 ? item : null;
-        })
-        return moves.length - 3 === reduced.length
+    const checkWin = (moves) => {
+        let hasWon = false
+        try {
+            states.forEach(state => {
+                let movesCopy = [...moves]
+                const reduced = movesCopy.filter(move => {
+                    return state.moves.indexOf(move) === -1 ? null : move
+                })
+                if (state.moves.toString() == reduced.sort().toString()) {
+                    hasWon = true
+                    setWinState(state.line)
+                    throw new Error()
+                }
+            })
+        } catch (err) { }
+        return hasWon
     }
 
-    const checkWinForO = () => {
-        const board = playingField.map(row => row.map(col => col == "O" ? "P" : col == "X" ? 0 : col))
-
-    }
-
-    // const drawLine = (pos, deg = 0) => {
-    //     let currentWinState = { ...winState }
-    //     currentWinState.hasWon = true
-    //     currentWinState.lineAngle = deg
-    //     currentWinState.linePosition = pos - 1
-    //     setWinState(currentWinState)
-    // }
-
-    const updatePlayingField = (row, col) => {
+    const updatePlayingField = (id) => {
         const arrayChar = isFigureCross ? 'X' : 'O';
         setIsFigureCross(!isFigureCross)
-        let stateCopy = [...playingField]
-        stateCopy[row][col] = arrayChar
-        setPlayingField(stateCopy)
+        let movesCopy = { ...playerMoves }
+        movesCopy[arrayChar].push(id);
+        setPlayerMoves(movesCopy)
         checkWinState()
     }
 
     return (
         <StoreContext.Provider value={{
-            playingField,
             isFigureCross,
             winState,
-            updatePlayingField,
+            endgameMessage,
+            updatePlayingField
         }}>
             {children}
         </StoreContext.Provider>
