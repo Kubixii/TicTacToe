@@ -1,10 +1,9 @@
-import Cross from '../Cross/Cross';
 import React from 'react'
 import { createContext } from 'react';
 import data from '../helpers/winningStates.json'
 import { useState } from 'react';
 
-export const StoreContext = createContext(null)
+export const TicTacToeStoreContext = createContext(null)
 const { states } = data
 
 const initialPlayerMoves = {
@@ -22,15 +21,12 @@ const StoreProvider = ({ children }) => {
     const [endgameMessage, setEndgameMessage] = useState(null)
 
     const checkWinState = () => {
-        // finish this logic
-        checkWin(playerMoves.X);
-        checkWin(playerMoves.O);
-
+        if (checkWin(playerMoves.X)) return 'Wygrał X';
+        if (checkWin(playerMoves.O)) return 'Wygrał O';
         const isDraw = parseInt(playerMoves.X.length) + parseInt(playerMoves.O.length)
-        if (isDraw === 9) {
-            setEndgameMessage('remis')
-            return
-        }
+        if (isDraw === 9) return 'Remis'
+
+        return null
     }
 
     const checkWin = (moves) => {
@@ -57,18 +53,18 @@ const StoreProvider = ({ children }) => {
         let movesCopy = { ...playerMoves }
         movesCopy[arrayChar].push(id);
         setPlayerMoves(movesCopy)
-        checkWinState()
+        setEndgameMessage(checkWinState())
     }
 
     return (
-        <StoreContext.Provider value={{
+        <TicTacToeStoreContext.Provider value={{
             isFigureCross,
             winState,
             endgameMessage,
             updatePlayingField
         }}>
             {children}
-        </StoreContext.Provider>
+        </TicTacToeStoreContext.Provider>
     );
 }
 

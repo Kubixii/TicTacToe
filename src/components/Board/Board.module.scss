@@ -1,9 +1,24 @@
-.board {
+.playArea {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 30vw;
-    aspect-ratio: 1/ 1;
-    overflow: hidden;
-    position: relative
+    flex-direction: column;
+
+    &__board {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto auto auto;
+        min-width: 30vw;
+        aspect-ratio: 1/ 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__endgameMessage {
+        width: 87.55%;
+        height: 20vh;
+
+        text-align: center;
+        font-size: 2rem;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        padding: 2%;
+    }
 }

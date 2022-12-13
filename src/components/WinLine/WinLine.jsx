@@ -4,7 +4,7 @@ import { default as winlineStyles } from './WinLine.module.scss'
 
 const style = bemCssModules(winlineStyles)
 const leftOffset = 14.5;
-const fieldWidth = 32.62;
+const fieldWidth = 33.3;
 
 const WinLine = ({ position, angle }) => {
 
