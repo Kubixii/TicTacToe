@@ -1,6 +1,13 @@
 .playArea {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    &__moveIndicator {
+        height: 5vh;
+    }
 
     &__board {
         display: grid;
@@ -13,12 +20,10 @@
     }
 
     &__endgameMessage {
-        width: 87.55%;
-        height: 20vh;
+        height: 5vh;
+    }
 
-        text-align: center;
-        font-size: 2rem;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        padding: 2%;
+    &__options {
+        border: solid red 1px;
     }
 }

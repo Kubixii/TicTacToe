@@ -1,9 +1,12 @@
+import AppStoreProvider from './components/Stores/AppStoreProvider';
+import Game from './components/Game/Game';
 import React from 'react'
-import TicTacToe from './components/TicTacToe/TicTacToe';
 
 const App = () => {
   return (
-    <TicTacToe />
+    <AppStoreProvider>
+      <Game />
+    </AppStoreProvider>
   );
 }
 
