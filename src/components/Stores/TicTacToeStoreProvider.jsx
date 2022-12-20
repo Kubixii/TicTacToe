@@ -22,7 +22,6 @@ const StoreProvider = ({ children, PvCPU = true }) => {
     const [isFigureCross, setIsFigureCross] = useState(true)
     const [winState, setWinState] = useState({ ...initalWinState })
     const [endgameMessage, setEndgameMessage] = useState(null)
-    const [isPvCPU, setIsPvCPU] = useState(PvCPU)
     const [CPUAviliableMoves, setCPUAviliableMoves] = useState(initialCPUMoves)
 
     const checkWinState = () => {
@@ -68,7 +67,7 @@ const StoreProvider = ({ children, PvCPU = true }) => {
         boardTemp[id - 1] = arrayChar
         setBoard(boardTemp)
 
-        if (isPvCPU) {
+        if (PvCPU) {
             const CPUmove = 1
             const movesLeft = CPUAviliableMoves.filter(move => move !== id).filter(move => move !== CPUmove)
             setCPUAviliableMoves(movesLeft)

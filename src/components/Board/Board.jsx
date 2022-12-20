@@ -23,7 +23,8 @@ const Board = () => {
             const random = Math.floor(0 + Math.random() * 9)
             return numbers[random]
         }).join('')
-        const initialBoard = board.map((field, index) => <Field id={index + 1} key={`${index}-${number}`} />)
+        const initialBoard = board.map(
+            (field, index) => <Field id={index + 1} key={`${index}`} type={field} />)
         setFields(initialBoard)
         // }
     }, [board])

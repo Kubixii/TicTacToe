@@ -8,7 +8,7 @@ const style = bemCssModules(figureStyles)
 
 const Figure = ({ type }) => {
 
-    const figure = type === 'cross' ? <Cross /> : <Circle />
+    const figure = type === 'X' ? <Cross /> : <Circle />
 
     return (
         <div className={style()}>
